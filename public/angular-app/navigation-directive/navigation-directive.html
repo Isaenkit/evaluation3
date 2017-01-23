@@ -1,0 +1,10 @@
+<nav ng-controller="LoginController as vm" class="navbar navbar-default navbar-fixed-top" ng-init="vm.init()">
+  <div class="container">
+    <div class="navbar-header">
+      <form class="" action="index.html" method="post">
+      <a class="navbar-brand" href="#/">HoBook</a>
+      <button ng-class="vm.isActiveTab('register')" type="button" class="btn btn-default navbar-btn"><a href="#/register">S'inscrire</a></button>
+      <button ng-class="vm.isActiveTab('profile')" type="button" class="btn btn-default navbar-btn"><a href="#/profile">Se connecter</a></button>
+      </form>
+    </div>
+</nav>
