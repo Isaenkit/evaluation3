@@ -1,0 +1,31 @@
+{
+  "name": "evaluation3",
+  "version": "1.0.0",
+  "description": "Evalutation3 HoBook Hotel",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Isaenkit/evaluation3.git"
+  },
+  "keywords": [
+    "mongo",
+    "express",
+    "angular",
+    "node"
+  ],
+  "author": "isaenkit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Isaenkit/evaluation3/issues"
+  },
+  "homepage": "https://github.com/Isaenkit/evaluation3#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.7",
+    "path": "^0.12.7"
+  }
+}
