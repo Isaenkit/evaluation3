@@ -106,7 +106,7 @@
         "type": "Chambre simple",
         "number": 50,
         "description": "Une petite chambre à 1000€ oue et alors ?",
-        "photos": ["/photos/room/hdanncarltonbelfort/2.jpg", "/photos/room/hoteldanncarltonbelfortmedellin/5.jpg"],
+        "photos": ["/photos/room/danncarltonbelfort/2.jpg", "/photos/room/danncarltonbelfortmedellin/5.jpg"],
         "price": 1000
     }, {
         "type": "Chambre double",
