@@ -25,7 +25,16 @@
   });
 
   // Controllers
-  app.controller('accueilController', function(hotelDataFactory){
+  app.controller('accueilController', function(hotelDataFactory, $location){
+    this.errorLogin = false;
+
+    let paramsObject = {};
+    window.location.search.replace(/\?/,'').split('&').map(function(o){ paramsObject[o.split('=')[0]]= o.split('=')[1]});
+  
+    if(paramsObject.error == "email") {
+      this.errorLogin = true;
+    }
+
     this.login = function(form) {
       var connexion = {
         email : form.email,

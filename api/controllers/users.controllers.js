@@ -36,13 +36,13 @@ module.exports.login = (req, res) => {
             .redirect(302, '/hotels');
         } else {
                 res
-                .redirect(302, '/login');
+                .redirect(302, '/login?error=email');
               }
               } else {
                 // Sinon on redirige vers la page de connection
                 console.log('No user finding for this email');
                   res
-                  .redirect(302, '/login');
+                  .redirect(302, '/login?error=email');
               }
           }
         });
