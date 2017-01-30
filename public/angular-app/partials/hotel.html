@@ -1,0 +1,135 @@
+<div class="container">
+  <div class="row">
+    <div class = "col-xs-12">
+      <img ng-src="{{hotelStore.hotel.photos[0]}}" class="img-responsive"/>
+      <br/>
+      <h1 class="hotelTitle">{{hotelStore.hotel.name}}</h1><br/>
+      <p class="hotelDescription">{{hotelStore.hotel.description}}</p>
+    </div>
+  </div>
+
+  <div class="row marginTop">
+    <div class="col-xs-12 col-sm-6 room" ng-repeat="room in hotelStore.hotel.rooms">
+      <div class= "roomBorder">
+        <table class= "table">
+          <tr style="height:30px;">
+            <td><h4>{{room.type}}</h4></td>
+            <td style="text-align:right;"><h4>{{room.price | currency}}</h4></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="roomDescription">{{room.description}} <br/>
+            </td>
+          </tr>
+        </table>
+        <div class="pull-left">
+          <font style="font-size:14px;color:#444";>{{room.number}} chambres disponibles</font>
+        </div>
+        <div class="pull-right">
+          <button class="btn btnReserver btn-primary">Réserver</button>
+        </div>
+        <br/>
+
+        <!-- Slider -->
+        <div id="Carousel_{{$index}}" class="carousel slide" ng-show="room.photos.length > 1">
+          <ol class = "carousel-indicators">
+            <li data-target="Carousel" data-slide-to="{{$index}}" ng-repeat="photo in room.photos" ng-class="$index === 0 ? 'active' : ''"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="item" ng-repeat="photo in room.photos" ng-class="$index === 0 ? 'active' : ''">
+              <img ng-src="{{photo}}" class="img-responsive">
+            </div>
+          </div>
+          <span class="left carousel-control" data-target="#Carousel_{{$index}}" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </span>
+          <span class="right carousel-control" data-target="Carousel_{{$index}}"
+          data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </span>
+        </div>
+
+        <img ng-src="{{room.photos[0]}}" alt="photo" class="img-responsive" ng-show="room.photos.length === 1">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="bloc">
+        <h1>Merci de laisser votre commentaire</h1>
+        <form name="ajouterCommentaireForm.$valid && hotelStore.ajouterCommentaire(this)">
+          <div class="form-group">
+            <label>Nom</label>
+            <input ng-model="name" type="text" placeholder="Nom" required class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Note</label>
+            <input ng-model="rating" type="number" value="1" min="0" max="5" required class="form-control" style="width:50px;" />
+          </div>
+          <br/>
+          <div class="form-group">
+            <label>Commentaire</label>
+            <textarea ng-model="commentaire" required class="form-control"></textarea>
+          </div>
+          <input type="submit" value="Envoyer" class="btn btn-primary pull-right" />
+          <br/> <br/>
+        </form>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="listCommentaire">
+        <h1>Commentaires</h1>
+          <ul>
+            <li ng-repeat ="review in hotelStore.hotel.reviews">
+              <span class="commentName">{{review.name}}</span>
+              <span ng-show="review.rating === 0">
+                <img src="img/vide.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+              </span>
+              <span ng-show="review.rating === 1">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+              </span>
+              <span ng-show="review.rating === 2">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+              </span>
+              <span ng-show="review.rating === 3">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+              </span>
+              <span ng-show="review.rating === 4">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/vide.png" alt="star" class="star">
+              </span>
+              <span ng-show="review.rating === 5">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/pleine.png" alt="star" class="star">
+                <img src="img/pleine.png" alt="star" class="star">
+              </span>
+              <br/>
+              {{review.review}}
+              <br/>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>

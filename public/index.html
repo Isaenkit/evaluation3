@@ -3,30 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>HoBook</title>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/stylesheet.css"/>
+    <link rel="stylesheet" href="css/homestyle.css"/>
   </head>
-  <body>
-    <hb-navigation></hb-navigation>
+  <body ng-controller="accueilController">
 
-    <div class="container">
-      <div ng-view></div>
-    </div>
+  <header header></header>
 
-    <script src="jquery/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
-    <script src="angular-app/app.js"></script>
-    <script src="angular-app/hotel-list/hotel-list-controller.js"></script>
-    <script src="angular-app/hotel-display/hotel-display-controller.js"></script>
-    <script src="angular-app/hotel-data-factory/hotel-data-factory.js"></script>
-    <script src="angular-app/hotel-rating/hotel-rating-directive.js"></script>
-    <script src="angular-app/register/register-controller.js"></script>
-    <script src="angular-app/navigation-directive/navigation-directive.js"></script>
-    <script src="angular-app/login/login-controller.js"></script>
-    <script src="angular-app/auth/auth-factory.js"></script>
-    <script src="angular-app/auth/auth-interceptor.js"></script>
+  <span id="welcome">HoBook.com</span>
 
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/angular-locale_fr-fr.js"></script>
+    <script type="text/javascript" src="angular-app/app.js"></script>
 
   </body>
 </html>

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var dburl = 'mongodb://localhost:27017/test';
+var dburl = 'mongodb://isa:isa@ds129179.mlab.com:29179/hobook';
 var retry = null;
 mongoose.connect(dburl);
 

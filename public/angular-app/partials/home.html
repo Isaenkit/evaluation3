@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <!-- Slider -->
+      <div id="Carousel" class="carousel slide">
+        <ol class="carousel-indicators">
+          <li data-target="Carousel" data-slide-to="0" class="active"></li>
+          <li data-target="Carousel" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="img/2.jpg" class="img-responsive" alt="Piscine">
+          </div>
+          <div class="item">
+            <img src="img/4.jpg" class="img-responsive" alt="Restaurant">
+          </div>
+        </div>
+
+        <span class="left carousel-control" data-target="#Carousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </span>
+        <span class="right carousel-control" data-target="#Carousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row marginTop">
+    <div class="col-xs-12 col-s-6">
+      <div class="ListHotel">
+        <h1>Les hôtels</h1>
+        <div ng-repeat="hotel in someStore.hotels" class="hotelList" style="backgroung:liner-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(0,0,0,0.65) 100%), url('{{hotel.photos[0]}}') no-repear 100%;">
+          <a href="#/hotel/{{ hotel._id}}" class="linkToHotel">{{hotel.name}}</a>
+          <br/>
+          <span ng-show="hotel.stars === 0">
+            <img src="img/vide.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+          </span>
+          <span ng-show="hotel.stars === 1">
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+          </span>
+          <span ng-show="hotel.stars === 2">
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+          </span>
+          <span ng-show="hotel.stars === 3">
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+          </span>
+          <span ng-show="hotel.stars === 4">
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/vide.png" alt="star" class="star"/>
+          </span>
+          <span ng-show="hotel.stars === 5">
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/pleine.png" alt="star" class="star"/>
+            <img src="img/pleine.png" alt="star" class="star"/>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class = "col-xs-2 col-sm-6">
+      <div class="listCommentaire">
+        <h1>Ils commentent</h1>
+        <div ng-repeat="hotel in homeStore.hotels">
+          <ul>
+            <li ng-repeat="review in hotel.reviews">
+              <span class="commentName">{{review.name}}</span>
+              <span ng-show="review.rating === 0">
+                <img src="img/vide.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+              </span>
+              <span ng-show="review.rating === 1">
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+              </span>
+              <span ng-show="review.rating === 2">
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+              </span>
+              <span ng-show="review.rating === 3">
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+              </span>
+              <span ng-show="review.rating === 4">
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/vide.png" alt="star" class="star"/>
+              </span>
+              <span ng-show="review.rating === 5">
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/pleine.png" alt="star" class="star"/>
+                <img src="img/pleine.png" alt="star" class="star"/>
+              </span>
+              <br/>
+              {{review.review}}
+              <br/>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

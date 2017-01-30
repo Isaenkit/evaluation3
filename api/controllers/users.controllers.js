@@ -1,69 +1,75 @@
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
-var bcrypt = require('bcrypt-nodejs');
-var jwt = require('jsonwebtoken');
-
-module.exports.register = (req, res) => {
-  console.log('registering user');
-
-  var username = req.body.username;
-  var name = req.body.name || null;
-  var password = req.body.password;
-
-  User
-    .create({
-      username : username,
-      name : name,
-      password : bcrypt.hashSync(password, bcrypt.genSaltSync(10))
-    }, function(err, user) {
-      if (err) {
-        console.log(err);
-        res.status(400).json(err);
-      } else {
-        console.log('user created', user);
-        res.status(201).json(user);
-      }
-    });
-};
+var User = mongoose.model('users');
+var path = require('path');
+var crypto = require('crypto');
 
 module.exports.login = (req, res) => {
-  console.log('logging in user');
-  var username = req.body.username;
-  var password = req.body.password;
 
-  User.findOne({
-    username: username
-  }).exec(function(err, user){
-    if (err) {
-      console.log(err);
-      res.status(400).json(err);
-    } else {
-      if (bcrypt.compareSync(password, user.password)){
-        console.log('User found', user);
-        var token = jwt.sign({ username:user.username }, 's3cr3t', {expiresIn:3600});
-        // Enregistrement du token et de sa durée de validité 1 heure ou 3600 s
-        res.status(200).json({success: true, token:token});
-      } else {
-        res.status(401).json('Unauthorized');
+  if(!req.body.email || !req.body.password) {
+    res.send('login failed');
+  } else {
+    console.log(req.body);
+    var email = req.body.email;
+    var password = req.body.password;
+
+
+    User
+      .findOne({
+        email : email
+      })
+      .exec(function(err, user){
+        if (err) {
+          console.log(err);
+          res
+            .status(500)
+            .json(err);
+          } else {
+            if (user != null) {
+              // si on trouve un utilisateur avec cet email
+              var motdepasseMD5 = crypto.createHash('md5').update(password).digest("hex");
+
+              if (motdepasseMD5 === user.password) {
+          req.session.name = user.name;
+          req.session.userID = user._id;
+          console.log('Connection OK');
+          res
+            .redirect(302, '/hotels');
+        } else {
+                res
+                .redirect(302, '/login');
+              }
+              } else {
+                // Sinon on redirige vers la page de connection
+                console.log('No user findig for this email');
+                  res
+                  .redirect(302, '/login');
+              }
+          }
+        });
       }
-    }
-  });
+}
+
+module.exports.logout = (req, res) => {
+  req.session.destroy();
+  console.log('Logout session');
+  res.redirect(302, '/');
 };
 
-module.exports.authenticate = (req, res, next) => {
-  var headerExists = req.headers.authorization;
-  if(headerExists) {
-    var token = req.headers.authorization.split('')[1]; // --> authorization bearer XXX
-    jwt.verify(token, 's3cr3t', function(error, decoded) {
-      if(error){
-        console.log(error);
-        res.status(401).json('Unauthorized');
-      } else {
-        req.user = decoded.username;
-        next();
-      }
-    });
-  } else {
-    res.status(403).json('No token provided');
-  }
+module.exports.inscription = (req, res) => {
+    User
+
+      .create({
+        name : req.body.name,
+        email : req.body.email,
+        password : crypto.createHash('md5').update(req.body.password).digest("hex")
+      }, function(err, user) {
+          if (err) {
+            res.status(500).json(err);
+          } else {
+            req.session.name = user.name;
+            req.session.userID = user._id;
+            res
+              .redirect(302, '/hotels');
+          }
+      });
 };

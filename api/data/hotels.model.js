@@ -47,4 +47,4 @@ var hotelSchema = new mongoose.Schema({
   rooms : [roomSchema]
 });
 
-mongoose.model('hotel', hotelSchema, 'hotel');
+mongoose.model('hotel', hotelSchema, 'hotel'); // Les deux noms 'hotel' correspondent au nom de la collection donnée dans mlab
