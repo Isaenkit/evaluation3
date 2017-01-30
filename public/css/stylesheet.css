@@ -1,8 +1,11 @@
 textarea {
     resize: none;
 }
+body {
+  background: #D9D5A7;
+}
 
-.etoile {
+.star {
   width:15px;
   vertical-align: top;
 }
@@ -22,7 +25,7 @@ header {
 }
 #logo {
   font-size: 20px;
-  color: white;
+  color: #D9D5A7;
   margin-top: 9px;
   display: inline-block;
 }
@@ -35,27 +38,41 @@ header {
   border-radius: 3px;
   padding:10px;
 }
-  .listHotel > h1, .listCommentaire > h1, .bloc > h1 {color: #003580;}
-  .listHotel > ul {
+.listHotel > h2, .listCommentaire > h2, .bloc > h2 {
+  color: #D9D5A7;
+  font-family: 'Titillium Web', sans-serif;
+}
+.bloc, .listCommentaire {
+  background-color:#8C2703;
+}
+
+.listCommentaire {
+  font-family: 'Titillium Web', sans-serif;
+}
+h1 {
+  font-family: 'Titillium Web', sans-serif;
+  color : #8C2703;
+}
+.listHotel > ul {
     list-style-type: none;
     padding: 0;
   }
-  .listHotel li {
+.listHotel li {
     font-size: 18px;
     color:black;
-  }
+}
 
 .listCommentaire, .bloc {
   padding: 10px;
   border:1px solid #003580;
   border-radius: 3px;
 }
-  .listCommentaire ul {
+.listCommentaire ul {
     list-style-type: none;
     padding: 0;
   }
 .commentName {
-  color:#003580;
+  color:#F2A35E;
   font-size: 18px;
 }
 .commentReview {
@@ -65,7 +82,8 @@ header {
 
 
 a.linkToHotel:active, a.linkToHotel:link, a.linkToHotel:visited {
-  color:white;
+  color:#73344B;
+  font-family: 'Titillium Web', sans-serif;
   font-size: 20px;
   display: inline-block;
   text-decoration: none;
@@ -73,30 +91,35 @@ a.linkToHotel:active, a.linkToHotel:link, a.linkToHotel:visited {
 }
 a.linkToHotel:hover {
   text-decoration: underline;
+  color:white;
 }
 /*HOTEL*/
 .room {
   margin-bottom: 10px;
 }
 .roomBorder {
-  background: linear-gradient(to bottom,#ffc457 0,#feba02 100%);
-  border:1px solid #e2a711;
+  background: linear-gradient(to bottom,#A4A665 0,#f2A35E 100%);
+  border:1px solid #f2A35E;
   border-radius: 3px;
   padding:10px;
 }
 
 p.hotelDescription {
   font-size: 20px;
+  color: #73344B;
+  font-family: 'Titillium Web', sans-serif;
 }
 .hotelTitle {
   margin: 0;
-  color: #003580;
+  color: #73344B;
 }
 .room h4 {
-  color: #003580;
+  color: #73344B;
+  font-family: 'Titillium Web', sans-serif;
 }
 td {
   border:0 !important;
+  font-family: 'Titillium Web', sans-serif;
 }
 .roomDescription {
   font-size: 16px;
@@ -119,6 +142,10 @@ td {
   padding:10px;
 }
 .footer {
-  background:#00357f;
+  background:#8c2703;
   margin-top: 50px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 12px;
+  text-align: right;
+  color:#F2A35E;
 }

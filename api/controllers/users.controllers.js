@@ -40,7 +40,7 @@ module.exports.login = (req, res) => {
               }
               } else {
                 // Sinon on redirige vers la page de connection
-                console.log('No user findig for this email');
+                console.log('No user finding for this email');
                   res
                   .redirect(302, '/login');
               }

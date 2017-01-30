@@ -12,5 +12,6 @@ router
 router
   .route('/hotel/:hotelId')
   .get(ctrlHotels.hotelsGetOne)
+  .post(ctrlHotels.postAddComment)
 
 module.exports = router;

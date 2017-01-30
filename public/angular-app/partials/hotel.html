@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
     <div class = "col-xs-12">
-      <img ng-src="{{hotelStore.hotel.photos[0]}}" class="img-responsive"/>
+      <img ng-src="{{hotelCtrl.hotel.photos[0]}}" class="img-responsive"/>
       <br/>
-      <h1 class="hotelTitle">{{hotelStore.hotel.name}}</h1><br/>
-      <p class="hotelDescription">{{hotelStore.hotel.description}}</p>
+      <h1 class="hotelTitle">{{hotelCtrl.hotel.name}}</h1><br/>
+      <p class="hotelDescription">{{hotelCtrl.hotel.description}}</p>
     </div>
   </div>
 
   <div class="row marginTop">
-    <div class="col-xs-12 col-sm-6 room" ng-repeat="room in hotelStore.hotel.rooms">
+    <div class="col-xs-12 col-sm-6 room" ng-repeat="room in hotelCtrl.hotel.rooms">
       <div class= "roomBorder">
         <table class= "table">
           <tr style="height:30px;">
@@ -22,7 +22,7 @@
           </tr>
         </table>
         <div class="pull-left">
-          <font style="font-size:14px;color:#444";>{{room.number}} chambres disponibles</font>
+          <font style="font-size:14px;color:#444;font-family:'Titillium Web', sans-serif;";>{{room.number}} chambres disponibles</font>
         </div>
         <div class="pull-right">
           <button class="btn btnReserver btn-primary">Réserver</button>
@@ -56,20 +56,20 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6">
       <div class="bloc">
-        <h1>Merci de laisser votre commentaire</h1>
-        <form name="ajouterCommentaireForm.$valid && hotelStore.ajouterCommentaire(this)">
+        <h2>Merci de laisser votre commentaire</h2>
+        <form name="ajouterCommentaireForm" ng-submit="ajouterCommentaireForm.$valid && hotelCtrl.addComment(this)">
           <div class="form-group">
             <label>Nom</label>
             <input ng-model="name" type="text" placeholder="Nom" required class="form-control" />
           </div>
           <div class="form-group">
             <label>Note</label>
-            <input ng-model="rating" type="number" value="1" min="0" max="5" required class="form-control" style="width:50px;" />
+            <input ng-model="rating" type="number" value="1" min="0" max="5" required class="form-control" style="width:100px;" />
           </div>
           <br/>
           <div class="form-group">
             <label>Commentaire</label>
-            <textarea ng-model="commentaire" required class="form-control"></textarea>
+            <textarea ng-model="comment" type="text" placeholder="Commentaires" required class="form-control"></textarea>
           </div>
           <input type="submit" value="Envoyer" class="btn btn-primary pull-right" />
           <br/> <br/>
@@ -78,9 +78,9 @@
     </div>
     <div class="col-xs-12 col-sm-6">
       <div class="listCommentaire">
-        <h1>Commentaires</h1>
+        <h2>Commentaires</h2>
           <ul>
-            <li ng-repeat ="review in hotelStore.hotel.reviews">
+            <li ng-repeat ="review in hotelCtrl.hotel.reviews">
               <span class="commentName">{{review.name}}</span>
               <span ng-show="review.rating === 0">
                 <img src="img/vide.png" alt="star" class="star">

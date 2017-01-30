@@ -25,42 +25,43 @@
   });
 
   // Controllers
-  app.controller('accueilController', function(hotelService){
+  app.controller('accueilController', function(hotelDataFactory){
     this.login = function(form) {
       var connexion = {
         email : form.email,
         password : form.password
       };
 
-      hotelService.connexion(connexion).then((response) => {
+      hotelDataFactory.connexion(connexion).then((response) => {
         console.log(response.data);
       });
     }
   });
 
-  app.controller('homeController', function(hotelService){
+  app.controller('homeController', function(hotelDataFactory){
     this.hotels = [];
-    hotelService.hotelsGetAll().then((response) => {
+    hotelDataFactory.hotelsGetAll().then((response) => {
+      console.log(response);
       this.hotels = response.data;
     });
   });
 
-  app.controller('hotelController', function(hotelService, $routeParams) {
-    var id = $routeParams.hotelId;
+  app.controller('hotelController', function(hotelDataFactory, $routeParams) {
+    var hotelId = $routeParams.hotelId;
     this.hotel = {};
 
-    hotelService.hotelsGetOne(hotelId).then((response) => {
+    hotelDataFactory.hotelsGetOne(hotelId).then((response) => {
       console.log(response.data);
       this.hotel = response.data;
     });
-    this.ajouterCommentaire = function(form) {
-      var commentaire = {
+    this.addComment = function(form) {
+      var comment = {
         name : form.name,
         rating : parseInt(form.rating, 10),
-        commentaire : form.commentaire
-      };
+        review : form.comment
+      }
 
-      hotelService.postAddComment(hotelId, commentaire).then((response) => {
+      hotelDataFactory.postAddComment(hotelId, comment).then((response) => {
         this.hotel.reviews.push(response.data);
       });
     }
@@ -73,12 +74,12 @@
     .when('/', {
       templateUrl: 'angular-app/partials/home.html',
       controller: 'homeController',
-      controllerAs: 'homeStore'
+      controllerAs: 'homeCtrl'
     })
-    .when('/hotel/:id', {
+    .when('/hotel/:hotelId', {
       templateUrl: 'angular-app/partials/hotel.html',
       controller: 'hotelController',
-      controllerAs: 'hotelStore'
+      controllerAs: 'hotelCtrl'
     })
     .otherwise({
       redirectTo:'/'
@@ -86,7 +87,7 @@
 }]);
 
   // Service pour les hotels
-  app.factory('hotelService', function($http){
+  app.factory('hotelDataFactory', function($http){
     return {
       hotelsGetAll : hotelsGetAll,
       hotelsGetOne : hotelsGetOne,
@@ -94,12 +95,10 @@
       connexion : connexion
     };
     function hotelsGetAll() {
-      return
-      $http.get('/api/hotel').then(complete).catch(failed);
+      return $http.get('/api/hotel').then(complete).catch(failed);
     }
-    function hotelsGetOne() {
-      return
-      $http.get('/api/hotel/' + hotelId).then(complete).catch(failed);
+    function hotelsGetOne(hotelId) {
+      return $http.get('/api/hotel/' + hotelId).then(complete).catch(failed);
     }
     function postAddComment(hotelId, commentaire) {
       return $http.post('/api/hotel/' + hotelId, commentaire).then(complete).catch(failed);
@@ -108,8 +107,7 @@
       return $http.post('/api/login', connexion).then(complete).catch(failed);
     }
     function complete(response) {
-      return
-      response;
+      return response;
     }
     function failed(error) {
       console.log(error.statusText);

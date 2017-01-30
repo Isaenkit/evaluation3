@@ -13,7 +13,7 @@ module.exports.hotelsGetAll = (req, res) => {
             .status(500)
             .json(err);
         } else {
-          console.log("Found hotels");
+          console.log("Found hotels", hotels.length);
           res
             .json(hotels);
         }
@@ -23,27 +23,28 @@ module.exports.hotelsGetAll = (req, res) => {
   module.exports.hotelsGetOne = (req, res) => {
     var hotelId = req.params.hotelId;
 
-    console.log('Get hotelId', id);
+    console.log('Get hotelId', hotelId);
 
     Hotel
       .findById(hotelId)
       .exec(function(err, hotel) {
         if (err) {
-          console.log("Error finding hotel");
+          console.log("Hotel not found in DB");
           res
             .status(500)
             .json(err);
         } else {
           console.log("Finding hotel");
             res
-              .json(hotel)
+              .status(200)
+              .json(hotel);
         }
       });
   };
 
   module.exports.postAddComment = (req, res) => {
     var hotelId = req.params.hotelId;
-
+    console.log(req.body);
     Hotel
       .findById(hotelId)
       .select('reviews')
@@ -62,7 +63,7 @@ module.exports.hotelsGetAll = (req, res) => {
           hotel.reviews.push({
             name : req.body.name,
             rating : parseInt(req.body.rating, 10),
-            review : req.body.commentaire
+            review : req.body.review
           });
           hotel.save(function(err, hotelUpdated) {
             if (err) {

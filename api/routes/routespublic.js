@@ -32,17 +32,17 @@ router
 router
   .route('/hotels')
   .get(auth, function(req,res){
-    res.sendFile(path.join(__dirname, '../public', 'hotels.html'));
+    res.sendFile(path.join(__dirname, '../../public', 'hotels.html'));
   });
 router
   .route('/login')
   .get(function(req,res){
-    res.sendFile(path.join(__dirname, '../public', 'login.html'));
+    res.sendFile(path.join(__dirname, '../../public', 'login.html'));
   });
 router
   .route('/register')
   .get(function(req, res){
-    res.sendFile(path.join(__dirname, '../public', 'register.html'));
+    res.sendFile(path.join(__dirname, '../../public', 'register.html'));
   });
 
   module.exports = router;
